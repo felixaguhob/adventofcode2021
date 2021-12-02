@@ -26,6 +26,7 @@ public class SubmarineTest {
         submarine.move(movement);
 
         assertEquals(5, submarine.getHorizontalPosition());
+        assertEquals(0, submarine.getDepth());
     }
 
     @Test
@@ -58,7 +59,7 @@ public class SubmarineTest {
 
         submarine.move(movement);
 
-        assertEquals(-5, submarine.getDepth());
+        assertEquals(0, submarine.getDepth());
     }
 
     @Test
@@ -80,7 +81,7 @@ public class SubmarineTest {
 
         submarine.move(movement);
 
-        assertEquals(5, submarine.getDepth());
+        assertEquals(0, submarine.getDepth());
     }
 
     @Test
@@ -109,6 +110,6 @@ public class SubmarineTest {
         submarine.move(movements);
 
         assertEquals(15, submarine.getHorizontalPosition());
-        assertEquals(10, submarine.getDepth());
+        assertEquals(60, submarine.getDepth());
     }
 }

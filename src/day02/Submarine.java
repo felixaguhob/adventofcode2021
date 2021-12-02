@@ -1,7 +1,5 @@
 package day02;
 
-import day01.SonarSweep;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -14,10 +12,12 @@ public class Submarine {
 
     private int horizontalPosition;
     private int depth;
+    private int aim;
 
     public Submarine () {
         horizontalPosition = 0;
         depth = 0;
+        aim = 0;
     }
     public void move(List<String> movements) {
         for(String movement : movements) {
@@ -32,9 +32,12 @@ public class Submarine {
             int units = Integer.parseInt(tmp[1]);
 
             switch (direction) {
-                case "forward" -> horizontalPosition += units;
-                case "up" -> depth -= units;
-                case "down" -> depth += units;
+                case "forward" -> {
+                    horizontalPosition += units;
+                    depth += (aim * units);
+                }
+                case "up" -> aim -= units;
+                case "down" -> aim += units;
             }
         } catch (Exception ignored) {
 
