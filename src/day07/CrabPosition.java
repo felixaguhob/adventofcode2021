@@ -3,6 +3,7 @@ package day07;
 import day06.FishTank;
 
 import java.io.IOException;
+import java.net.HttpCookie;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -29,6 +30,17 @@ public class CrabPosition {
             totalFuelCost += Math.abs(position - crab);
         }
 
+        return totalFuelCost;
+    }
+
+    public int moveCrabsToExponential(int pos) {
+        int totalFuelCost = 0;
+        for (Integer crab : crabs) {
+            int cost = Math.abs(pos - crab);
+            int finalCost = (cost * (cost + 1)) / 2;
+
+            totalFuelCost += finalCost;
+        }
 
         return totalFuelCost;
     }
@@ -47,12 +59,29 @@ public class CrabPosition {
         return new AbstractMap.SimpleEntry<>(pos, leastFuel);
     }
 
+
+    public Map.Entry<Integer, Integer> getLeastFuelExponential() {
+        int leastFuel = Integer.MAX_VALUE;
+        int pos = 0;
+        for(int i=0; i <= maxCrabPos; i++) {
+            int cost = moveCrabsToExponential(i);
+            if (cost < leastFuel) {
+                leastFuel = cost;
+                pos = i;
+            }
+        }
+
+        return new AbstractMap.SimpleEntry<>(pos, leastFuel);
+    }
+
     public static void main(String[] args) throws IOException {
         String crabs = Files.readString(Paths.get("input_day07.txt"), StandardCharsets.US_ASCII);
 
         CrabPosition crabPosition = new CrabPosition(crabs);
 
-        Map.Entry<Integer, Integer> result = crabPosition.getLeastFuel();
-        System.out.println("Least Fuel Cost on Position: " + result.getKey() + " With Cost: "+ result.getValue());
+        Map.Entry<Integer, Integer> result1 = crabPosition.getLeastFuel();
+        Map.Entry<Integer, Integer> result2 = crabPosition.getLeastFuelExponential();
+        System.out.println("Least Fuel Cost on Position: " + result1.getKey() + " With Cost: "+ result1.getValue());
+        System.out.println("Least Fuel Cost on Position (Exp): " + result2.getKey() + " With Cost: "+ result2.getValue());
     }
 }

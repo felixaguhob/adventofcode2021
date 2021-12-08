@@ -24,4 +24,21 @@ class CrabPositionTest {
 
         assertEquals(Integer.valueOf(37), crabPosition.getLeastFuel().getValue());
     }
+
+    @Test
+    void testCrabPositionMoveCrabExponential() {
+        String input = "16,1,2,0,4,2,7,1,2,14";
+        CrabPosition crabPosition = new CrabPosition(input);
+
+        assertEquals(168, crabPosition.moveCrabsToExponential(5));
+        assertEquals(206, crabPosition.moveCrabsToExponential(2));
+    }
+
+    @Test
+    void testCrabPositionGetLeastFuelExponential() {
+        String input = "16,1,2,0,4,2,7,1,2,14";
+        CrabPosition crabPosition = new CrabPosition(input);
+
+        assertEquals(Integer.valueOf(168), crabPosition.getLeastFuelExponential().getValue());
+    }
 }
