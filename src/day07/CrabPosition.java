@@ -1,9 +1,6 @@
 package day07;
 
-import day06.FishTank;
-
 import java.io.IOException;
-import java.net.HttpCookie;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
