@@ -47,10 +47,10 @@ public class BingoRunner {
     }
 
     public static void main(String[] args) throws IOException {
-        String drawNumbers = Files.readString(Paths.get("input_day04_drawNumbers.txt"), StandardCharsets.US_ASCII);
+        String drawNumbers = Files.readString(Paths.get("src/day04/input_day04_drawNumbers.txt"), StandardCharsets.US_ASCII);
         List<BingoCard> bingoCards = new ArrayList<>();
         List<String> bingoCardNumbers = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get("input_day04_BingoCards.txt"), Charset.defaultCharset())) {
+        try (Stream<String> lines = Files.lines(Paths.get("src/day04/input_day04_BingoCards.txt"), Charset.defaultCharset())) {
             lines.forEachOrdered(line -> {
                 if (line.trim().equals("")) {
                     if (bingoCardNumbers.size() > 0) {

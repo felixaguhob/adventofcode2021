@@ -32,17 +32,19 @@ public class FishTank {
                 groupFishes[j] = groupFishes[j + 1];
             }
             groupFishes[6] += pregnantFishes; //mommy fishies
-            groupFishes[8] = pregnantFishes; //offsrping fishies
+            groupFishes[8] = pregnantFishes; //offspring fishies
         }
     }
 
     public static void main(String[] args) throws IOException {
-        String drawNumbers = Files.readString(Paths.get("input_day06.txt"), StandardCharsets.US_ASCII);
+        String drawNumbers = Files.readString(Paths.get("src/day06/input_day06.txt"), StandardCharsets.US_ASCII);
 
         FishTank fishTank = new FishTank(drawNumbers);
+        fishTank.runSimulation(80);
+        System.out.println("Total Fish in Tank After 80 Days: " + fishTank.getFishCount());
 
-        fishTank.runSimulation(256);
-
-        System.out.println("Total Fish in Tank After 256 Days: " + fishTank.getFishCount());
+        FishTank fishTank2 = new FishTank(drawNumbers);
+        fishTank2.runSimulation(256);
+        System.out.println("Total Fish in Tank After 256 Days: " + fishTank2.getFishCount());
     }
 }

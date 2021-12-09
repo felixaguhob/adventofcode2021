@@ -9,11 +9,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Map;
 
-public class CrabPosition {
+public class CrabSubmarines {
 
     ArrayList<Integer> crabs = new ArrayList<>();
     int maxCrabPos = 0;
-    public CrabPosition(String crabs) {
+    public CrabSubmarines(String crabs) {
         String[] crabsPositions = crabs.trim().split(",");
         for(String crabPos : crabsPositions) {
             this.crabs.add(Integer.parseInt(crabPos));
@@ -72,13 +72,13 @@ public class CrabPosition {
     }
 
     public static void main(String[] args) throws IOException {
-        String crabs = Files.readString(Paths.get("input_day07.txt"), StandardCharsets.US_ASCII);
+        String crabs = Files.readString(Paths.get("src/day07/input_day07.txt"), StandardCharsets.US_ASCII);
 
-        CrabPosition crabPosition = new CrabPosition(crabs);
+        CrabSubmarines crabSubmarines = new CrabSubmarines(crabs);
 
-        Map.Entry<Integer, Integer> result1 = crabPosition.getLeastFuel();
-        Map.Entry<Integer, Integer> result2 = crabPosition.getLeastFuelExponential();
+        Map.Entry<Integer, Integer> result1 = crabSubmarines.getLeastFuel();
+        Map.Entry<Integer, Integer> result2 = crabSubmarines.getLeastFuelExponential();
         System.out.println("Least Fuel Cost on Position: " + result1.getKey() + " With Cost: "+ result1.getValue());
-        System.out.println("Least Fuel Cost on Position (Exp): " + result2.getKey() + " With Cost: "+ result2.getValue());
+        System.out.println("Least Fuel Cost on Position (New Rate): " + result2.getKey() + " With Cost: "+ result2.getValue());
     }
 }

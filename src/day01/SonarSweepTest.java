@@ -1,11 +1,10 @@
 package day01;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SonarSweepTest {
     @Test
@@ -23,7 +22,7 @@ class SonarSweepTest {
         inputList.add("263");
 
         SonarSweep sonar = new SonarSweep();
-        assertEquals(7, sonar.countIncreases(inputList));
+        Assertions.assertEquals(7, sonar.countIncreases(inputList));
     }
 
     @Test
@@ -32,7 +31,7 @@ class SonarSweepTest {
         inputList.add("1");
 
         SonarSweep sonar = new SonarSweep();
-        assertEquals(0, sonar.countIncreases(inputList));
+        Assertions.assertEquals(0, sonar.countIncreases(inputList));
     }
 
     @Test
@@ -40,7 +39,7 @@ class SonarSweepTest {
         List<String> inputList = new ArrayList<>();
 
         SonarSweep sonar = new SonarSweep();
-        assertEquals(0, sonar.countIncreases(inputList));
+        Assertions.assertEquals(0, sonar.countIncreases(inputList));
     }
 
     @Test
@@ -58,6 +57,6 @@ class SonarSweepTest {
         inputList.add("263");
 
         SonarSweep sonar = new SonarSweep();
-        assertEquals(5, sonar.countIncreasesSlidingWindow(inputList));
+        Assertions.assertEquals(5, sonar.countIncreasesSlidingWindow(inputList));
     }
 }

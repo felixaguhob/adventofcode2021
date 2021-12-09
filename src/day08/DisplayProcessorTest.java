@@ -26,8 +26,6 @@ class DisplayProcessorTest {
 
         DisplayProcessor processor = new DisplayProcessor(inputList);
 
-        int totalOutput = 0;
-
         int[] output = processor.decode();
         int totalCount = 0;
         for(int i=0; i < output.length; i++) {

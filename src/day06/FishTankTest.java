@@ -2,8 +2,6 @@ package day06;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Optional;
-
 import static org.junit.Assert.*;
 
 class FishTankTest {

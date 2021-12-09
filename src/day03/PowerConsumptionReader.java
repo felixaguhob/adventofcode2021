@@ -174,7 +174,7 @@ public class PowerConsumptionReader {
 
     public static void main(String[] args) throws IOException {
         List<String> inputList = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get("input_day03.txt"), Charset.defaultCharset())) {
+        try (Stream<String> lines = Files.lines(Paths.get("src/day03/input_day03.txt"), Charset.defaultCharset())) {
             lines.forEachOrdered(inputList::add);
         }
 

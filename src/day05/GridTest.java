@@ -13,7 +13,7 @@ class GridTest {
         String lineInput = "1,1 -> 1,3";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, false);
 
         assertTrue(grid.add(line));
 
@@ -27,7 +27,7 @@ class GridTest {
         String lineInput = "1,3 -> 1,1";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, false);
 
         assertTrue(grid.add(line));
 
@@ -41,7 +41,7 @@ class GridTest {
         String lineInput = "1,1 -> 5,1";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, false);
 
         assertTrue(grid.add(line));
 
@@ -57,7 +57,7 @@ class GridTest {
         String lineInput = "5,1 -> 2,1";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, false);
 
         assertTrue(grid.add(line));
 
@@ -72,7 +72,7 @@ class GridTest {
         String lineInput = "1,1 -> 5,1";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, false);
 
         grid.add(line);
 
@@ -91,7 +91,7 @@ class GridTest {
         String lineInput = "1,1 -> 3,3";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, true);
 
         assertTrue(grid.add(line));
 
@@ -105,7 +105,7 @@ class GridTest {
         String lineInput = "9,7 -> 7,9";
         Line line = new Line(lineInput);
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, true);
 
         assertTrue(grid.add(line));
 
@@ -115,7 +115,7 @@ class GridTest {
     }
 
     @Test
-    void testGetIntersections() {
+    void testGetIntersectionsWithDiagonalLines() {
         List<String> lineCoordinates = new ArrayList<>();
         lineCoordinates.add("0,9 -> 5,9");
         lineCoordinates.add("8,0 -> 0,8");
@@ -128,7 +128,7 @@ class GridTest {
         lineCoordinates.add("0,0 -> 8,8");
         lineCoordinates.add("5,5 -> 8,2");
 
-        Grid grid = new Grid(10, 10);
+        Grid grid = new Grid(10, 10, true);
 
         for(String coordinate : lineCoordinates) {
             Line line = new Line(coordinate);

@@ -59,7 +59,7 @@ public class SubmarineTest {
 
         submarine.move(movement);
 
-        assertEquals(0, submarine.getDepth());
+        assertEquals(-5, submarine.getDepth());
     }
 
     @Test
@@ -81,7 +81,7 @@ public class SubmarineTest {
 
         submarine.move(movement);
 
-        assertEquals(0, submarine.getDepth());
+        assertEquals(5, submarine.getDepth());
     }
 
     @Test
@@ -108,6 +108,48 @@ public class SubmarineTest {
         Submarine submarine = new Submarine();
 
         submarine.move(movements);
+
+        assertEquals(15, submarine.getHorizontalPosition());
+        assertEquals(10, submarine.getDepth());
+    }
+
+    @Test
+    void TestSubmarineMoveWithAimForward() {
+        Submarine submarine = new Submarine();
+
+        String movement = "forward 5";
+
+        submarine.moveWithAim(movement);
+
+        assertEquals(5, submarine.getHorizontalPosition());
+        assertEquals(0, submarine.getDepth());
+    }
+
+
+    @Test
+    void TestSubmarineMoveWithAimDown() {
+        Submarine submarine = new Submarine();
+
+        String movement = "down 5";
+
+        submarine.moveWithAim(movement);
+
+        assertEquals(0, submarine.getDepth());
+    }
+
+    @Test
+    void TestSubmarineListOfMovementsWithAim() {
+        List<String> movements = new ArrayList<>();
+        movements.add("forward 5");
+        movements.add("down 5");
+        movements.add("forward 8");
+        movements.add("up 3");
+        movements.add("down 8");
+        movements.add("forward 2");
+
+        Submarine submarine = new Submarine();
+
+        submarine.moveWithAim(movements);
 
         assertEquals(15, submarine.getHorizontalPosition());
         assertEquals(60, submarine.getDepth());

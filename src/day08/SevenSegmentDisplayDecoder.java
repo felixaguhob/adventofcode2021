@@ -1,14 +1,10 @@
 package day08;
 
 public class SevenSegmentDisplayDecoder {
-    public class CountHolder {
-        public int number;
-        public int count;
-    }
-
     String[] inputCodes;
     String[] outputCodes;
     String[] parsedCode = new String[10];
+
     public SevenSegmentDisplayDecoder(String input) {
         String[] codes = input.trim().split("\\|");
         inputCodes = codes[0].split(" ");
@@ -34,7 +30,7 @@ public class SevenSegmentDisplayDecoder {
 
     }
 
-    private void fillUpParsedCode1478() {
+    private void fillUpParsedCode1748() {
         for(int i=0; i < inputCodes.length; i++) {
             String curCode = inputCodes[i];
             if (curCode.length() == 2) {
@@ -49,7 +45,7 @@ public class SevenSegmentDisplayDecoder {
         }
     }
 
-    private void fillUpParsedCode235() {
+    private void fillUpParsedCode352() {
         for(int i=0; i < inputCodes.length; i++) {
             String curCode = inputCodes[i];
             if (curCode.length() == 5) {
@@ -66,26 +62,32 @@ public class SevenSegmentDisplayDecoder {
         }
     }
 
-    private void fillUpParsedCode069() {
+    private void fillUpParsedCode960() {
         for(int i=0; i < inputCodes.length; i++) {
             String curCode = inputCodes[i];
             if (curCode.length() == 6) {
                 if(contains(curCode, parsedCode[4])) {
                     parsedCode[9] = curCode;
                 } else {
-                    if(contains(curCode, parsedCode[7])) {
-                        parsedCode[0] = curCode;
-                    } else {
+                    if(!contains(curCode, parsedCode[7])) {
                         parsedCode[6] = curCode;
+                    } else {
+                        parsedCode[0] = curCode;
                     }
                 }
             }
         }
     }
 
+    public void decodeNumbers() {
+        fillUpParsedCode1748();
+        fillUpParsedCode352();
+        fillUpParsedCode960();
+    }
+
     public int[] decode() {
         int[] result = new int[10];
-        fillUpParsedCode1478();
+        fillUpParsedCode1748();
 
         for(int i=0; i < outputCodes.length; i++) {
             if (outputCodes[i].length() == 0)
@@ -102,10 +104,9 @@ public class SevenSegmentDisplayDecoder {
         return result;
     }
 
-    public int getDecodedOutput() {
-        fillUpParsedCode1478();
-        fillUpParsedCode235();
-        fillUpParsedCode069();
+
+    public String getDecodedOutput() {
+        decodeNumbers();
 
         String output = "";
         for(int i=0; i < outputCodes.length; i++) {
@@ -118,7 +119,7 @@ public class SevenSegmentDisplayDecoder {
                 }
             }
         }
-        return Integer.parseInt(output);
+        return output;
     }
 
     private boolean contains(String haystack, String needle) {

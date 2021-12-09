@@ -56,6 +56,6 @@ public class SonarSweep {
 
     public static void main(String[] args) throws IOException {
         SonarSweep sonarSweep = new SonarSweep();
-        sonarSweep.runWithInput("input_day01.txt");
+        sonarSweep.runWithInput("./src/day01/input_day01.txt");
     }
 }

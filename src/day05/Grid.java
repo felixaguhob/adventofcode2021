@@ -1,7 +1,5 @@
 package day05;
 
-import day03.PowerConsumptionReader;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -16,9 +14,12 @@ public class Grid {
 
     private int[][] gridMap;
 
-    public Grid(int horizontalLength, int verticalLength) {
+    private boolean includeDiagonalLines = false;
+
+    public Grid(int horizontalLength, int verticalLength, boolean includeDiagonalLines) {
         this.horizontalLength = horizontalLength;
         this.verticalLength = verticalLength;
+        this.includeDiagonalLines = includeDiagonalLines;
 
         gridMap = new int[horizontalLength][verticalLength];
 
@@ -48,6 +49,10 @@ public class Grid {
             }
             return true;
         } else {
+            if(!includeDiagonalLines) {
+                return true;
+            }
+
             int steps = (Math.abs(line.getX1()  - line.getX2())) - 1;
             int count = 0;
             int curX = line.getX1();
@@ -96,11 +101,11 @@ public class Grid {
 
     public static void main(String[] args) throws IOException {
         List<String> inputList = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get("input_day05.txt"), Charset.defaultCharset())) {
+        try (Stream<String> lines = Files.lines(Paths.get("src/day05/input_day05.txt"), Charset.defaultCharset())) {
             lines.forEachOrdered(inputList::add);
         }
 
-        Grid grid = new Grid(1000, 1000);
+        Grid grid = new Grid(1000, 1000, false);
 
         for(String coordinate : inputList) {
             Line line = new Line(coordinate);
@@ -108,6 +113,16 @@ public class Grid {
             grid.add(line);
         }
 
-        System.out.println("Intersections Count: " + grid.getIntersections().size());
+        System.out.println("Intersections Count (No Diagonals): " + grid.getIntersections().size());
+
+        Grid grid2 = new Grid(1000, 1000, true);
+
+        for(String coordinate : inputList) {
+            Line line = new Line(coordinate);
+
+            grid2.add(line);
+        }
+
+        System.out.println("Intersections Count (With Diagonals): " + grid2.getIntersections().size());
     }
 }

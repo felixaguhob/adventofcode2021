@@ -1,20 +1,16 @@
 package day08;
 
-import day07.CrabPosition;
-
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Stream;
 
 public class DisplayProcessor {
 
-    List<String> inputList = new ArrayList<>();
+    List<String> inputList;
     public DisplayProcessor(List<String> inputList) {
         this.inputList = inputList;
     }
@@ -35,7 +31,7 @@ public class DisplayProcessor {
         int result = 0;
         for(String input : inputList) {
             SevenSegmentDisplayDecoder decoder = new SevenSegmentDisplayDecoder(input);
-            result += decoder.getDecodedOutput();
+            result += Integer.parseInt(decoder.getDecodedOutput());
 
         }
         return result;
@@ -43,7 +39,7 @@ public class DisplayProcessor {
 
     public static void main(String[] args) throws IOException {
         List<String> inputList = new ArrayList<>();
-        try (Stream<String> lines = Files.lines(Paths.get("input_day08.txt"), Charset.defaultCharset())) {
+        try (Stream<String> lines = Files.lines(Paths.get("src/day08/input_day08.txt"), Charset.defaultCharset())) {
             lines.forEachOrdered(inputList::add);
         }
 
@@ -54,7 +50,7 @@ public class DisplayProcessor {
             totalCount += output[i];
         }
 
-        System.out.println("Instance count (1,4,7,8): " + totalCount);
+        System.out.println("Instance count for (1,4,7,8): " + totalCount);
         System.out.println("Sum of all parsed output : " + processor.getSumTotalParsedOutput());
     }
 }
